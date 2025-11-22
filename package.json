@@ -1,0 +1,19 @@
+{
+  "name": "accessibility-check-pr-workflow",
+  "version": "1.0.0",
+  "description": "Automated LambdaTest mobile accessibility check with PR blocking",
+  "main": "tests/mobile-test.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "node tests/mobile-test.js",
+    "accessibility-check": "node scripts/run-lt-accessibility-check.js"
+  },
+  "author": "Inderjeet Saluja",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "wd": "^1.14.0"
+  }
+}

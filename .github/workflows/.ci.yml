@@ -1,0 +1,48 @@
+name: Mobile Accessibility PR Check
+
+on:
+  pull_request:
+
+jobs:
+
+  run-tests:
+    name: Run Mobile Tests
+    runs-on: ubuntu-latest
+    outputs:
+      lt-build-prefix: ${{ steps.set-prefix.outputs.lt-build-prefix }}
+
+    env:
+      LT_USERNAME: ${{ secrets.LT_USERNAME }}
+      LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Set Build Prefix
+        id: set-prefix
+        run: echo "lt-build-prefix=PR-${{ github.event.pull_request.number }}-RUN-${{ github.run_id }}" >> $GITHUB_OUTPUT
+
+      - name: Run LambdaTest Mobile Accessibility Test
+        run: npm run test
+
+  accessibility-check:
+    name: Check Accessibility Violations
+    needs: run-tests
+    runs-on: ubuntu-latest
+
+    env:
+      LT_USERNAME: ${{ secrets.LT_USERNAME }}
+      LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY }}
+      LT_BUILD_PREFIX: ${{ needs.run-tests.outputs.lt-build-prefix }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Accessibility Check
+        run: npm run accessibility-check
