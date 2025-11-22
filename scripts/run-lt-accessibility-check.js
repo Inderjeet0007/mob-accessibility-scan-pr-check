@@ -77,6 +77,8 @@ async function checkAccessibilityForSession(sessionId, sessionName) {
   // Prepend RDAUT_
   const scanId = `RDAUT_${sessionId}`;
   const url = `https://api.lambdatest.com/accessibility/api/v1/test-issue/${scanId}`;
+  const accessibilityUrl = `https://accessibility.lambdatest.com/automation/test/${scanId}`;
+  const automationUrl = `https://appautomation.lambdatest.com/test?testID=${sessionId}&selectedTab=accessibility`;
   const maxRetries = 12;       // 12 retries × 5s = 60 seconds
   const interval = 5000;       // 5 seconds
 
@@ -86,7 +88,10 @@ async function checkAccessibilityForSession(sessionId, sessionName) {
       const info = res.data.test_info;
       const totalIssues = info.total_issues || 0;
 
-      console.log(`Session: ${sessionName} (${sessionId}) → Accessibility issues: ${totalIssues}`);
+      console.log(`\n🔎 Session: ${sessionName} (${sessionId})`);
+      console.log(`   • Accessibility issues: ${totalIssues}`);
+      console.log(`   • Accessibility Report: ${accessibilityUrl}`);
+      console.log(`   • App Automation Dashboard: ${automationUrl}\n`);
 
       return totalIssues;
 
