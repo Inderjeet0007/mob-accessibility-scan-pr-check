@@ -1,6 +1,6 @@
-# Mobile Accessibility PR Check
+# App Accessibility PR Check
 
-This repository provides a **CI/CD workflow** for running **mobile app tests** on LambdaTest and automatically checking **accessibility issues**. It ensures that pull requests cannot be merged if any accessibility violations are detected.
+This repository provides a **CI/CD workflow** for running **app tests** on LambdaTest and automatically checking **accessibility issues**. It ensures that pull requests cannot be merged if any accessibility violations are detected.
 
 ---
 
@@ -13,13 +13,12 @@ This repository provides a **CI/CD workflow** for running **mobile app tests** o
 - [Usage](#usage)  
 - [GitHub Actions CI](#github-actions-ci)  
 - [How it works](#how-it-works)  
-- [Contributing](#contributing)  
 
 ---
 
 ## **Features**
 
-- Run mobile automation tests using `wd` (Node.js WebDriver) on LambdaTest.  
+- Run app automation tests using `wd` (Node.js WebDriver) on LambdaTest.  
 - Automatically poll for accessibility reports after test completion.  
 - Fail the PR if any accessibility issues are found or the report is unavailable.  
 - Parallel polling of multiple sessions to minimize CI time.  
