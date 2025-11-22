@@ -25,6 +25,9 @@ jobs:
         id: set-prefix
         run: echo "lt-build-prefix=PR-${{ github.event.pull_request.number }}-RUN-${{ github.run_id }}" >> $GITHUB_OUTPUT
 
+      - name: Export Build Prefix to Environment
+        run: echo "LT_BUILD_PREFIX=${{ steps.set-prefix.outputs.lt-build-prefix }}" >> $GITHUB_ENV
+
       - name: Run LambdaTest Mobile Accessibility Test
         run: npm run test
 
