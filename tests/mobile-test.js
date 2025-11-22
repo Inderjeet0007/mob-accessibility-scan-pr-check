@@ -8,7 +8,7 @@ const buildPrefix = process.env.LT_BUILD_PREFIX;
 const testName = "Sample Test NodeJS";
 
 const desiredCapabilities = {
-  "app": "lt://APP10160232441755075133592279",
+  "app": "lt://APP10160212031762415641469255",
   "build": `${buildPrefix} - ${testName}`,
   "name": testName,
   "deviceName": "Galaxy S21 5G",
